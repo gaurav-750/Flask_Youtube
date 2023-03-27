@@ -13,7 +13,7 @@ app.config['DEBUG'] = True
 
 @app.route("/")
 def hello():
-    return jsonify({"message": "Go to /messages/ or /messages/search/"}), 200
+    return jsonify({"message": "Go to /comments/ or /comments/search/"}), 200
 
 
 @app.route("/comments/")
