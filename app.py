@@ -1,3 +1,4 @@
+from config import filter_by_author
 import os
 import requests
 
@@ -12,7 +13,7 @@ app.config['DEBUG'] = True
 
 
 @app.route("/comments/")
-def comments():
+def get_comments():
     youtube_api = os.getenv('YLYTIC_API')
     response = requests.get(youtube_api)
     return jsonify(response.json()), 200
@@ -28,9 +29,9 @@ def get_date(input_date):  # Sat, 1 Jan 2023 01:55:35 GMT
 
 # /search?search_author=Fredrick
 @app.route("/comments/search/")
-def get_comments_by_author_name():
+def get_filtered_comments():
 
-    # * extracting the params from the url
+    # *extracting the params from the url
     search_author = request.args.get('search_author')
     at_from = request.args.get('at_from')
     at_to = request.args.get('at_to')
