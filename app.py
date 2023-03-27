@@ -1,4 +1,3 @@
-from config import filter_by_author
 import os
 import requests
 
