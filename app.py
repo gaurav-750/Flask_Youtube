@@ -11,6 +11,11 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 
+@app.route("/")
+def hello():
+    return jsonify({"message": "Go to /messages/ or /messages/search/"}), 200
+
+
 @app.route("/comments/")
 def get_comments():
     youtube_api = os.getenv('YLYTIC_API')
