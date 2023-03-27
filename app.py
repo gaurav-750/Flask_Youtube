@@ -51,7 +51,7 @@ def get_filtered_comments():
 
     if search_author:
         filtered_comments = [
-            comment for comment in filtered_comments if comment['author'] == search_author]
+            comment for comment in filtered_comments if comment['author'].lower() == search_author.lower()]
 
     if at_from:
         filtered_comments = [
@@ -77,7 +77,7 @@ def get_filtered_comments():
 
     if search_text:
         filtered_comments = [
-            comment for comment in filtered_comments if search_text in comment['text']]
+            comment for comment in filtered_comments if search_text.lower() in comment['text'].lower()]
 
     return {"comments": filtered_comments}, 200
 
