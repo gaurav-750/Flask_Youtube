@@ -60,6 +60,13 @@ def get_comments_by_author_name():
         filtered_comments = [
             comment for comment in filtered_comments if get_date(comment['at']) <= at_to]
 
+    if like_from:
+        filtered_comments = [
+            comment for comment in filtered_comments if comment['like'] >= int(like_from)]
+    if like_to:
+        filtered_comments = [
+            comment for comment in filtered_comments if comment['like'] <= int(like_to)]
+
     return {"comments": filtered_comments}, 200
 
 
