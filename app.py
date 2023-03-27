@@ -67,6 +67,18 @@ def get_comments_by_author_name():
         filtered_comments = [
             comment for comment in filtered_comments if comment['like'] <= int(like_to)]
 
+    if reply_from:
+        filtered_comments = [
+            comment for comment in filtered_comments if comment['reply'] >= int(reply_from)]
+
+    if reply_to:
+        filtered_comments = [
+            comment for comment in filtered_comments if comment['reply'] <= int(reply_to)]
+
+    if search_text:
+        filtered_comments = [
+            comment for comment in filtered_comments if search_text in comment['text']]
+
     return {"comments": filtered_comments}, 200
 
 
