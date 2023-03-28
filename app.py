@@ -37,8 +37,8 @@ def get_filtered_comments():
 
     # *extracting the params from the url
     search_author = request.args.get('search_author')
-    at_from = request.args.get('at_from')
-    at_to = request.args.get('at_to')
+    at_from = datetime.strptime(request.args.get('at_from'), '%d-%m-%Y')
+    at_to = datetime.strptime(request.args.get('at_to'), '%d-%m-%Y')
     like_from = request.args.get('like_from')
     like_to = request.args.get('like_to')
     reply_from = request.args.get('reply_from')
@@ -60,10 +60,11 @@ def get_filtered_comments():
 
     if at_from:
         filtered_comments = [
-            comment for comment in filtered_comments if get_date(comment['at']) >= at_from]
+            comment for comment in filtered_comments if datetime.strptime(get_date(comment['at']), '%d-%m-%Y') >= at_from]
+
     if at_to:
         filtered_comments = [
-            comment for comment in filtered_comments if get_date(comment['at']) <= at_to]
+            comment for comment in filtered_comments if datetime.strptime(get_date(comment['at']),  '%d-%m-%Y') <= at_to]
 
     if like_from:
         filtered_comments = [
